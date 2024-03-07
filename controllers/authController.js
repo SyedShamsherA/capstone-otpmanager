@@ -61,6 +61,12 @@ module.exports = {
         }
     },
 
+    forgettingUserDetails: async(req, res)=> {
+      const user = await User.findOne({ email: req.user.email })
+      console.log(user)
+      res.json({ userDetails: user })
+    },
+
     adminSignup: async (req, res) => {
         const { username, email, password } = req.body;
     

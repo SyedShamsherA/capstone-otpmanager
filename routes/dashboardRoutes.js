@@ -13,7 +13,7 @@ const extractApikey = (req, res, next) => {
 router.get('/user-details/:apikey', extractApikey, dashboardController.getUserDetails);
 router.get('/count-otps', verifyToken, dashboardController.countOtps);
 router.get('/count-validated-otps', verifyToken, dashboardController.countValidatedOtps);
-router.post('/validate-otp', verifyToken, dashboardController.validateOtp);
+router.post('/validate-otp',  dashboardController.validateOtp);
 router.post('/send-otp-by-email', dashboardController.sendOtpByEmail)
 
 module.exports = router;

@@ -105,11 +105,11 @@ module.exports = {
     validateOtp: async (req, res) => {
         try {
             // Assuming you have the user's ID in the request
-            const userId = req.user.id;
+            //const userId = req.user.id;
             const { otp } = req.body;
 
             // Find and update the OTP status to 'used'
-            const otpRecord = await Otp.findOneAndUpdate({ userId, otp, status: 'unused' },
+            const otpRecord = await Otp.findOneAndUpdate({ otp, status: 'unused' },
                 { status: 'used' }, { status: 'expired' }, { status: 'failed' }, { status: 'blacklisted' });
 
             if (!otpRecord) {
