@@ -37,7 +37,7 @@ module.exports = {
                 from: 'syedshamsher9174@gmail.com', 
                 to: email,
                 subject: 'Your OTP for Dashboard Access',
-                text: `Your OTP is: ${otp}`,
+                text: `Your OTP is: ${otp}, Kindly don't share for credentials with anyone.`,
             };
 
             const send = await transporter.sendMail(mailOptions);

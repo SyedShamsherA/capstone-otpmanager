@@ -12,26 +12,29 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
-// MongoDB Connection
-connectDB();
-
-app.get('/', async(req, res) => {
-    res.json(({ message : 'application started successfully' }))
+app.get('/', async (req, res) => {
+  res.json(({ message: 'application started successfully' }))
 })
 
 
 // Routes
-  const authRoutes = require('./routes/authRoutes');
+const authRoutes = require('./routes/authRoutes');
 // const otpRoutes = require('./routes/otpRoutes');
- const sendOtpRoutes = require('./routes/sendOtpRoutes')
- const dashboardRoutes = require('./routes/dashboardRoutes')
+const sendOtpRoutes = require('./routes/sendOtpRoutes')
+const dashboardRoutes = require('./routes/dashboardRoutes')
+const otpValidationRoute = require('./routes/otpValidationRoutes')
+const passwordRoute = require('./routes/passwordRoutes')
 
-   app.use('/api/auth', authRoutes);
+app.use('/api/auth', authRoutes);
 // app.use('/api/otp', otpRoutes);
-  app.use('/api/sendOtp', sendOtpRoutes)
-  app.use('/api/dashboard', dashboardRoutes)
+app.use('/api/sendOtp', sendOtpRoutes)
+app.use('/api/dashboard', dashboardRoutes)
+app.use('/api/otpValidation', otpValidationRoute)
+app.use('/api/passwordManager', passwordRoute)
 
 // Start Server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+  // MongoDB Connection
+  connectDB();
 });
