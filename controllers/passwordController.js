@@ -7,7 +7,7 @@ exports.createPassword = async (req, res) => {
     const { appName, password } = req.body 
     console.log(req.body)
     try {
-        const validOTP = await Otp.findOne({ otp, status:'unused' })
+        const validOTP = await Otp.findOne({ otp })
         console.log(validOTP, 'creating')
         if( !validOTP ){
             return res.status(400).json({ message: 'invalid otp' })
@@ -48,7 +48,7 @@ exports.updatePassword = async (req, res ) => {
     const { appName, password } = req.body
 
     try {
-        const validOTP = await Otp.findOne({ otp, status: 'used' })
+        const validOTP = await Otp.findOne({ otp })
         console.log(validOTP, 'updated');
         if(!validOTP){
             return res.status(400).json({ message: 'invalid otp' })
@@ -70,7 +70,7 @@ exports.deletePassword = async (req, res) => {
     const { appName } = req.body
 
     try {
-        const validOTP = await Otp.findOne({ otp, status: 'used' })
+        const validOTP = await Otp.findOne({ otp })
         if(!validOTP){
             return res.status(400).json({ message: 'invalid otp' })
         }
