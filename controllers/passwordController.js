@@ -26,7 +26,8 @@ exports.createPassword = async (req, res) => {
 
 //get all passwords for the user
 exports.getAllPasswords = async (req, res) => {
-    const { otp } = req.body
+    const { otp } = req.query
+    console.log(otp)
     try {
         const validOTP = await Otp.findOne({ otp, status:'used' })
         if(!validOTP){
