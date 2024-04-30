@@ -29,7 +29,7 @@ exports.getAllPasswords = async (req, res) => {
     const { otp } = req.query
     console.log(otp)
     try {
-        const validOTP = await Otp.findOne({ otp, status:'used' })
+        const validOTP = await Otp.findOne({ otp })
         if(!validOTP){
             return res.status(400).json({ message: 'invalid otp' })
         }
